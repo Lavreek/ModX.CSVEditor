@@ -1,0 +1,17 @@
+{
+    "name": "lavre/alfalok",
+    "autoload": {
+        "psr-4": {
+            "Lavre\\Alfalok\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lavreek",
+            "email": "lavreeksolacki@yandex.ru"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^6.2"
+    }
+}
