@@ -1,8 +1,9 @@
 {
-    "name": "lavre/alfalok",
+    "name": "lavre/modxcsv",
     "autoload": {
         "psr-4": {
-            "Lavre\\Alfalok\\": "src/"
+            "Lavre\\": ".",
+            "Lavre\\ModXCSV\\": "src/"
         }
     },
     "authors": [
@@ -12,6 +13,7 @@
         }
     ],
     "require": {
-        "symfony/dotenv": "^6.2"
+        "symfony/dotenv": "^6.2",
+        "ext-mysqli": "*"
     }
 }

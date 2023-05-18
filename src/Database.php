@@ -1,5 +1,9 @@
 <?php
 
+namespace Lavre\ModXCSV;
+
+use mysqli;
+
 class Database
 {
     private $mysql;
@@ -40,10 +44,18 @@ class Database
         return $this->returnResponse($request);
     }
 
-    public function getResourcesByPagetitle(string $pagetitle, string $condition = "`id`, `pagetitle`")
+    public function getResourceByPagetitle(string $pagetitle, string $condition = "`id`, `pagetitle`")
+    {
+        $query = "SELECT $condition FROM `modx_site_content` WHERE `pagetitle` = '$pagetitle'";
+        $request = $this->getRequest($query);
+
+        return $this->returnResponse($request, single: true);
+    }
+
+    public function getResourceById(string|int $id, string $condition = "`id`, `pagetitle`") : array|null
     {
 
-        $query = "SELECT $condition FROM `modx_site_content` WHERE `pagetitle` = '$pagetitle'";
+        $query = "SELECT $condition FROM `modx_site_content` WHERE `id` = '$id'";
         $request = $this->getRequest($query);
 
         return $this->returnResponse($request, single: true);
@@ -82,7 +94,7 @@ class Database
         $file_name = ROOT_PATH . "/" . $_ENV['FILE_NAME'] . ".json";
 
         if (!file_exists($file_name)) {
-            $resource = $this->getResourcesByPagetitle($resource['pagetitle'], "*");
+            $resource = $this->getResourceByPagetitle($resource['pagetitle'], "*");
 
             $resource['id'] = "NULL";
             $resource['pagetitle'] = uniqid().time();

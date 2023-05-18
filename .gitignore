@@ -2,7 +2,9 @@
 *.xlsx
 *.json
 
-!example.csv
+!CodingExample.csv
+!TVExample.csv
+
 !composer.json
 
 .idea
