@@ -30,9 +30,13 @@ class FileCommander
         return ['header' => $header, 'rows' => $rows];
     }
 
-    public function writeFileData($data, $append = true) : void
+    public function writeFileData($data, $append = true, $newline = false) : void
     {
         $put = false;
+
+        if ($newline) {
+            $data = $data . "\n";
+        }
 
         while ($put === false) {
             if ($append) {

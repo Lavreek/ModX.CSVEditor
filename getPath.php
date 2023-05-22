@@ -23,8 +23,6 @@ $condition = '`pagetitle`, `parent`';
 while ($data = fgetcsv($f)) {
 
     if ($pagetitle = $data[0]) {
-        var_dump($data);
-
         $path = "/" . $pagetitle;
 
         $resource = $database->getResourceByPagetitle($pagetitle, $condition);
@@ -35,6 +33,6 @@ while ($data = fgetcsv($f)) {
             $path = "/" . $resource['pagetitle'] . $path;
         }
 
-        $fileCommander->writeFileData($path . "\n");
+        $fileCommander->writeFileData($path, newline: true);
     }
 }
