@@ -4,11 +4,11 @@ namespace Lavre\ModXCSV;
 
 class FileCommander
 {
-    private $file;
+    private string $file;
 
     const default_dirs = [ROOT_PATH . "/files", ROOT_PATH . "/results"];
 
-    public function __construct($file)
+    public function __construct(string $file)
     {
         $this->file = $file;
         $this->makeDefaultDirs();
@@ -19,7 +19,9 @@ class FileCommander
         $header = [];
         $rows = [];
 
-        while ($row = fgetcsv(stream: $this->file, separator: ';')) {
+        $f = fopen($this->file, 'r+');
+
+        while ($row = fgetcsv(stream: $f, separator: ';')) {
             if (!$header) {
                 $header = $row;
             } else {

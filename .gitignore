@@ -9,4 +9,6 @@
 
 .idea
 .env
+
+/results
 /vendor

@@ -80,7 +80,17 @@ class Database
     public function updateTemplateById(int $id, string $value) : void
     {
         $query = "UPDATE `modx_site_tmplvar_contentvalues` SET `value` = '$value' WHERE `id` = $id";
-        $request = $this->getRequest($query);
+        $this->getRequest($query);
+    }
+
+    public function updateTemplateValueByCondition(int $tmplvarid, string $replace, $condition = '') : void
+    {
+        if (!empty($condition)) {
+            $condition = " AND " . trim($condition) . " ";
+        }
+
+        $query = "UPDATE `modx_site_tmplvar_contentvalues` SET `value` = '$replace' WHERE `tmplvarid` = $tmplvarid $condition";
+        $this->getRequest($query);
     }
 
     public function createTemplateByContentId(int $contentid, int $tmplvarid, string $value) : void
